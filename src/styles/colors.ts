@@ -1,234 +1,218 @@
 /**
  * Centralized Color Palette for Portfolio
- * 
- * This file contains all colors used throughout the application
- * organized by semantic meaning and theme variants.
+ * Cyber Goth Theme 🖤💜
  */
 
 export const colors = {
-  // Base colors
   white: '#FFFFFF',
   black: '#000000',
   transparent: 'transparent',
 
-  // Primary Pink Palette
+  // Cyber goth neon purple palette
+  // 'pink' key kept for compatibility with all existing components
   pink: {
-    25: '#FEF8FA',        // Very light pink transition color (rgb(254 248 250))
-    50: '#FFF5F7',        // Light pink background
-    100: '#FAE8ED',       // Lavender blush
-    200: '#FDD5DF',       // Mimi pink
-    300: '#EABEC3',       // Main dusty pink
-    400: '#D9A5AC',       // Darker dusty pink
-    500: '#C88B95',       // Even darker dusty pink
-    600: '#B8727C',       // Strong dusty pink
-    700: '#A6707B',       // Navigation text
-    800: '#8B5A65',       // Main text pink (WCAG AA)
-    900: '#6B4C57',       // Darkest pink
+    25: '#0D0010',
+    50: '#110016',
+    100: '#1A0025',
+    200: '#4B0082',
+    300: '#7B00CC',
+    400: '#9B30FF',
+    500: '#CC66FF',
+    600: '#B44FFF',
+    700: '#A020F0',
+    800: '#BF5FFF',
+    900: '#E0AAFF',
   },
 
-  // Dark theme colors
   dark: {
-    50: '#F8FAFC',        // Almost white
-    100: '#F1F5F9',       // Very light gray
-    200: '#E2E8F0',       // Light gray
-    300: '#CBD5E1',       // Medium light gray
-    400: '#94A3B8',       // Medium gray
-    500: '#64748B',       // Neutral gray
-    600: '#475569',       // Medium dark gray
-    700: '#334155',       // Dark gray
-    800: '#1E293B',       // Very dark gray
-    900: '#0F172A',       // Almost black
-    950: '#020617',       // Darkest
+    50: '#1A1A2E',
+    100: '#16213E',
+    200: '#0F3460',
+    300: '#1A0030',
+    400: '#0D0020',
+    500: '#08001A',
+    600: '#050010',
+    700: '#03000A',
+    800: '#020008',
+    900: '#010005',
+    950: '#000000',
   },
 
-  // Semantic colors
   background: {
     light: {
-      primary: '#FFFFFF',
-      secondary: '#FFF5F7',
-      gradient: 'linear-gradient(180deg, rgb(254 245 245) 0%, rgb(254 240 240) 50%, rgb(254 235 235) 100%)',
-      gradientEnd: 'rgb(254 235 235)', // End color of the main gradient for seamless transitions
-      overlay: 'rgba(255, 255, 255, 0.5)',
-      // Section-specific gradients - mostly white with very light pink brush at edges
+      primary: '#0A0010',
+      secondary: '#0D0018',
+      gradient: 'linear-gradient(180deg, #0A0010 0%, #0D0018 50%, #110020 100%)',
+      gradientEnd: '#0A0010',
+      overlay: 'rgba(0, 0, 0, 0.7)',
       sections: {
-        about: 'linear-gradient(180deg, rgb(255 255 255) 0%, rgb(254 250 252) 30%, #FEF8FA 100%)',
-        skills: 'linear-gradient(180deg, rgb(254 248 250) 0%, rgb(254 252 253) 30%, rgb(254 252 253) 70%, rgb(255 255 255) 100%)',
-        projects: 'linear-gradient(180deg, rgb(254 248 250) 0%, rgb(255 255 255) 15%, rgb(255 255 255) 85%, rgb(254 248 250) 100%)',
-        experience: 'linear-gradient(180deg, rgb(254 248 250) 0%, rgb(254 252 253) 25%, rgb(254 252 253) 75%, rgb(254 248 250) 100%)',
-        certifications: 'linear-gradient(180deg, rgb(255 255 255) 0%, rgb(255 255 255) 60%, rgb(254 252 253) 100%)',
+        about: 'linear-gradient(180deg, #0A0010 0%, #0D0015 30%, #0A0010 100%)',
+        skills: 'linear-gradient(180deg, #0A0010 0%, #0D0018 30%, #0D0018 70%, #0A0010 100%)',
+        projects: 'linear-gradient(180deg, #0A0010 0%, #0D0015 15%, #0D0015 85%, #0A0010 100%)',
+        experience: 'linear-gradient(180deg, #0A0010 0%, #0D0018 25%, #0D0018 75%, #0A0010 100%)',
+        certifications: 'linear-gradient(180deg, #0A0010 0%, #0D0015 60%, #0A0010 100%)',
       },
     },
     dark: {
-      primary: '#0F172A',
-      secondary: '#1E293B',
-      gradient: '#0A0F1B',
-      gradientEnd: '#0A0F1B', // Consistent dark background for seamless transitions
-      overlay: 'rgba(0, 0, 0, 0.7)',
-      // Dark mode sections maintain consistent dark background
+      primary: '#0A0010',
+      secondary: '#0D0018',
+      gradient: '#050008',
+      gradientEnd: '#050008',
+      overlay: 'rgba(0, 0, 0, 0.85)',
       sections: {
-        about: '#0A0F1B',
-        skills: '#0A0F1B',
-        projects: '#0A0F1B',
-        experience: '#0A0F1B',
-        certifications: '#0A0F1B',
+        about: '#0A0010',
+        skills: '#0A0010',
+        projects: '#0A0010',
+        experience: '#0A0010',
+        certifications: '#0A0010',
       },
     },
   },
 
-  // Text colors
   text: {
     light: {
-      primary: '#1F2937',     // rgb(31, 41, 55)
-      secondary: '#4B5563',   // rgb(75, 85, 99)
-      tertiary: '#6B7280',    // rgb(107, 114, 128)
-      accent: '#8B5A65',      // Pink text
-      pink: '#BE185D',        // rgb(190, 24, 93)
+      primary: '#E0AAFF',
+      secondary: '#BF5FFF',
+      tertiary: '#9B30FF',
+      accent: '#CC66FF',
+      pink: '#FF00FF',
     },
     dark: {
-      primary: '#FFFFFF',
-      secondary: '#FDD5DF',
-      tertiary: '#EABEC3',
-      accent: '#D9A5AC',
-      pink: '#EABEC3',
+      primary: '#F0D0FF',
+      secondary: '#CC66FF',
+      tertiary: '#A020F0',
+      accent: '#BF5FFF',
+      pink: '#FF00FF',
     },
   },
 
-  // Interactive elements
   interactive: {
     light: {
-      primary: 'rgba(234, 190, 195, 0.1)',
-      hover: 'rgba(234, 190, 195, 0.2)',
-      active: '#EABEC3',
-      focus: 'rgba(234, 190, 195, 0.3)',
+      primary: 'rgba(155, 48, 255, 0.1)',
+      hover: 'rgba(155, 48, 255, 0.25)',
+      active: '#9B30FF',
+      focus: 'rgba(155, 48, 255, 0.4)',
     },
     dark: {
-      primary: 'rgba(234, 190, 195, 0.1)',
-      hover: 'rgba(234, 190, 195, 0.2)',
-      active: '#EABEC3',
-      focus: 'rgba(234, 190, 195, 0.3)',
+      primary: 'rgba(155, 48, 255, 0.1)',
+      hover: 'rgba(155, 48, 255, 0.25)',
+      active: '#9B30FF',
+      focus: 'rgba(155, 48, 255, 0.4)',
     },
   },
 
-  // Navigation specific
   navigation: {
     light: {
-      background: 'rgba(255, 232, 239, 0.4)',
-      backgroundScrolled: 'rgba(255, 232, 239, 0.6)',
-      border: 'rgba(255, 194, 209, 0.15)',
-      borderScrolled: 'rgba(255, 194, 209, 0.2)',
-      shadow: 'rgba(255, 194, 209, 0.08)',
-      shadowScrolled: 'rgba(255, 194, 209, 0.12)',
-      mobile: 'rgba(254, 248, 250, 0.95)',
+      background: 'rgba(10, 0, 16, 0.6)',
+      backgroundScrolled: 'rgba(10, 0, 16, 0.85)',
+      border: 'rgba(155, 48, 255, 0.2)',
+      borderScrolled: 'rgba(155, 48, 255, 0.35)',
+      shadow: 'rgba(155, 48, 255, 0.1)',
+      shadowScrolled: 'rgba(155, 48, 255, 0.2)',
+      mobile: 'rgba(10, 0, 16, 0.97)',
     },
     dark: {
-      background: 'rgba(10, 15, 27, 0.4)',
-      backgroundScrolled: 'rgba(10, 15, 27, 0.6)',
-      border: 'rgba(234, 190, 195, 0.1)',
-      borderScrolled: 'rgba(234, 190, 195, 0.15)',
-      shadow: 'rgba(0, 0, 0, 0.2)',
-      shadowScrolled: 'rgba(0, 0, 0, 0.3)',
-      mobile: 'rgba(10, 15, 27, 0.95)',
+      background: 'rgba(5, 0, 8, 0.6)',
+      backgroundScrolled: 'rgba(5, 0, 8, 0.9)',
+      border: 'rgba(155, 48, 255, 0.15)',
+      borderScrolled: 'rgba(155, 48, 255, 0.3)',
+      shadow: 'rgba(155, 48, 255, 0.15)',
+      shadowScrolled: 'rgba(155, 48, 255, 0.25)',
+      mobile: 'rgba(5, 0, 8, 0.98)',
     },
   },
 
-  // Button variants
   button: {
     primary: {
       light: {
-        background: '#EABEC3',
-        text: '#FFFFFF',
-        hover: '#D9A5AC',
-        shadow: 'rgba(234, 190, 195, 0.3)',
+        background: '#7B00CC',
+        text: '#F0D0FF',
+        hover: '#9B30FF',
+        shadow: 'rgba(155, 48, 255, 0.5)',
       },
       dark: {
-        background: '#EABEC3',
-        text: '#0A0F1B',
-        hover: '#FDD5DF',
-        shadow: 'rgba(234, 190, 195, 0.4)',
+        background: '#9B30FF',
+        text: '#000000',
+        hover: '#CC66FF',
+        shadow: 'rgba(155, 48, 255, 0.6)',
       },
     },
     secondary: {
       light: {
-        background: 'rgba(255, 255, 255, 0.8)',
-        text: '#1F2937',
-        border: '#EABEC3',
-        hover: '#FAE8ED',
+        background: 'rgba(10, 0, 16, 0.8)',
+        text: '#E0AAFF',
+        border: '#7B00CC',
+        hover: 'rgba(123, 0, 204, 0.2)',
       },
       dark: {
-        background: 'rgba(31, 41, 55, 0.9)',
-        text: '#FFFFFF',
-        border: '#374151',
-        hover: 'rgba(234, 190, 195, 0.1)',
+        background: 'rgba(13, 0, 24, 0.9)',
+        text: '#E0AAFF',
+        border: '#4B0082',
+        hover: 'rgba(155, 48, 255, 0.15)',
       },
     },
     outline: {
       light: {
         background: 'transparent',
-        text: '#C88B95',
-        border: '#EABEC3',
-        hover: '#FAE8ED',
+        text: '#CC66FF',
+        border: '#9B30FF',
+        hover: 'rgba(155, 48, 255, 0.15)',
       },
       dark: {
-        background: '#1F2937',
-        text: '#EABEC3',
-        border: '#D9A5AC',
-        hover: 'rgba(234, 190, 195, 0.1)',
+        background: 'rgba(13, 0, 24, 0.5)',
+        text: '#CC66FF',
+        border: '#7B00CC',
+        hover: 'rgba(155, 48, 255, 0.2)',
       },
     },
   },
 
-  // Card colors
   card: {
     light: {
-      background: '#FFFFFF',
-      border: 'rgba(234, 190, 195, 0.3)',
-      shadow: 'rgba(0, 0, 0, 0.1)',
+      background: '#0D0018',
+      border: 'rgba(155, 48, 255, 0.25)',
+      shadow: 'rgba(155, 48, 255, 0.15)',
     },
     dark: {
-      background: '#1F2937',
-      border: 'rgba(55, 65, 81, 0.3)',
-      shadow: 'rgba(0, 0, 0, 0.3)',
+      background: '#0A0015',
+      border: 'rgba(155, 48, 255, 0.2)',
+      shadow: 'rgba(155, 48, 255, 0.2)',
     },
   },
 
-  // Special effects
   effects: {
-    glow: 'rgba(255, 194, 209, 0.3)',
-    dropShadow: 'rgba(234, 190, 195, 0.3)',
-    textShadow: 'rgba(0, 0, 0, 0.1)',
-    blur: 'rgba(255, 255, 255, 0.1)',
+    glow: 'rgba(155, 48, 255, 0.4)',
+    dropShadow: 'rgba(155, 48, 255, 0.35)',
+    textShadow: 'rgba(155, 48, 255, 0.6)',
+    blur: 'rgba(155, 48, 255, 0.1)',
   },
 
-  // Utility colors
   utility: {
-    success: '#10B981',
-    warning: '#F59E0B',
-    error: '#EF4444',
-    info: '#3B82F6',
-    neutral: '#6B7280',
+    success: '#00FF9F',
+    warning: '#FFD700',
+    error: '#FF003C',
+    info: '#00FFFF',
+    neutral: '#6B4C8A',
   },
 
-  // Special colors
   special: {
-    dragMe: '#EC4999',       // Hot pink for drag me star (rgb(236, 73, 153))
+    dragMe: '#FF00FF',
     aurora: {
-      dark: '#FF94B4',       // Pink aurora for dark mode
+      dark: '#9B30FF',
       light: {
-        1: '#FBCFE8',        // Light pink aurora stop 1
-        2: '#FECDD3',        // Light pink aurora stop 2
-        3: '#FED7E2',        // Light pink aurora stop 3
+        1: '#2D0040',
+        2: '#4B0082',
+        3: '#7B00CC',
       }
     }
   },
 } as const;
 
-// Type definitions for better TypeScript support
 type ColorTheme = 'light' | 'dark';
 type ColorVariant = keyof typeof colors;
 
 export type { ColorTheme, ColorVariant };
 
-// Helper function to get theme-specific colors
 export const getThemeColors = (theme: ColorTheme) => ({
   background: colors.background[theme],
   text: colors.text[theme],

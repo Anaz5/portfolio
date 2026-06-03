@@ -6,11 +6,9 @@
   font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
-
-  color-scheme: light;
-  color: #C88B95;
-  background-color: #ffffff;
-
+  color-scheme: dark;
+  color: #CC66FF;
+  background-color: #0A0010;
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
@@ -19,17 +17,22 @@
 
 a {
   font-weight: 500;
-  color: #646cff;
+  color: #9B30FF;
   text-decoration: inherit;
+  transition: color 0.2s ease, text-shadow 0.2s ease;
 }
+
 a:hover {
-  color: #535bf2;
+  color: #CC66FF;
+  text-shadow: 0 0 10px rgba(204, 102, 255, 0.7);
 }
 
 body {
   margin: 0;
   min-width: 320px;
   min-height: 100vh;
+  background-color: #0A0010;
+  color: #CC66FF;
 }
 
 h1 {
@@ -39,76 +42,193 @@ h1 {
 
 button {
   border-radius: 8px;
-  border: 1px solid transparent;
+  border: 1px solid rgba(155, 48, 255, 0.4);
   padding: 0.6em 1.2em;
   font-size: 1em;
   font-weight: 500;
   font-family: inherit;
-  background-color: #1a1a1a;
+  background-color: rgba(13, 0, 24, 0.8);
+  color: #CC66FF;
   cursor: pointer;
-  transition: border-color 0.25s;
+  transition: border-color 0.25s, box-shadow 0.25s, background 0.25s;
+}
+
+button:hover {
+  border-color: #9B30FF;
+  box-shadow: 0 0 14px rgba(155, 48, 255, 0.4);
+  background-color: rgba(155, 48, 255, 0.1);
 }
 
 button:focus,
 button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
+  outline: 2px solid rgba(155, 48, 255, 0.6);
+  outline-offset: 2px;
 }
 
-/* Removed light mode - keeping dark theme only */
+/* ─── Neon Glow Utilities ─── */
+.neon-text {
+  color: #CC66FF;
+  text-shadow:
+    0 0 7px rgba(204, 102, 255, 0.8),
+    0 0 20px rgba(155, 48, 255, 0.5),
+    0 0 40px rgba(123, 0, 204, 0.3);
+}
 
-/* Modal animations */
+.neon-border {
+  border: 1px solid rgba(155, 48, 255, 0.5);
+  box-shadow:
+    0 0 8px rgba(155, 48, 255, 0.3),
+    inset 0 0 8px rgba(155, 48, 255, 0.05);
+}
+
+/* ─── Glitch Animation ─── */
+@keyframes glitch {
+  0%   { clip-path: inset(20% 0 60% 0); transform: translate(-4px, 0); }
+  20%  { clip-path: inset(70% 0 10% 0); transform: translate(4px, 0); }
+  40%  { clip-path: inset(40% 0 40% 0); transform: translate(-2px, 0); }
+  60%  { clip-path: inset(10% 0 80% 0); transform: translate(3px, 0); }
+  80%  { clip-path: inset(60% 0 20% 0); transform: translate(-3px, 0); }
+  100% { clip-path: inset(20% 0 60% 0); transform: translate(0, 0); }
+}
+
+@keyframes glitch-2 {
+  0%   { clip-path: inset(50% 0 30% 0); transform: translate(4px, 0); }
+  25%  { clip-path: inset(10% 0 70% 0); transform: translate(-4px, 0); }
+  50%  { clip-path: inset(80% 0 5% 0);  transform: translate(2px, 0); }
+  75%  { clip-path: inset(30% 0 50% 0); transform: translate(-2px, 0); }
+  100% { clip-path: inset(50% 0 30% 0); transform: translate(0, 0); }
+}
+
+.glitch {
+  position: relative;
+}
+
+.glitch::before,
+.glitch::after {
+  content: attr(data-text);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+}
+
+.glitch::before {
+  color: #FF00FF;
+  animation: glitch 3s infinite;
+  animation-delay: 1s;
+}
+
+.glitch::after {
+  color: #00FFFF;
+  animation: glitch-2 3s infinite;
+  animation-delay: 1.5s;
+}
+
+.glitch:hover::before,
+.glitch:hover::after {
+  opacity: 0.6;
+}
+
+/* ─── Scan Lines Overlay ─── */
+@keyframes scanlines {
+  0%   { background-position: 0 0; }
+  100% { background-position: 0 100%; }
+}
+
+.scanlines::after {
+  content: '';
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 2px,
+    rgba(155, 48, 255, 0.015) 2px,
+    rgba(155, 48, 255, 0.015) 4px
+  );
+  pointer-events: none;
+  z-index: 9999;
+}
+
+/* ─── Neon Pulse ─── */
+@keyframes neon-pulse {
+  0%, 100% {
+    box-shadow:
+      0 0 5px rgba(155, 48, 255, 0.4),
+      0 0 15px rgba(155, 48, 255, 0.2);
+  }
+  50% {
+    box-shadow:
+      0 0 12px rgba(155, 48, 255, 0.7),
+      0 0 30px rgba(155, 48, 255, 0.4),
+      0 0 60px rgba(155, 48, 255, 0.15);
+  }
+}
+
+.neon-pulse {
+  animation: neon-pulse 2.5s ease-in-out infinite;
+}
+
+/* ─── Modal Animations ─── */
 @keyframes fadeIn {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
+  from { opacity: 0; }
+  to   { opacity: 1; }
 }
 
 @keyframes fadeOut {
-  from {
-    opacity: 1;
-  }
-  to {
-    opacity: 0;
-  }
+  from { opacity: 1; }
+  to   { opacity: 0; }
 }
 
 @keyframes scaleIn {
-  from {
-    transform: scale(0.8);
-    opacity: 0;
-  }
-  to {
-    transform: scale(1);
-    opacity: 1;
-  }
+  from { transform: scale(0.8); opacity: 0; }
+  to   { transform: scale(1);   opacity: 1; }
 }
 
 @keyframes scaleOut {
-  from {
-    transform: scale(1);
-    opacity: 1;
-  }
-  to {
-    transform: scale(0.8);
-    opacity: 0;
-  }
+  from { transform: scale(1);   opacity: 1; }
+  to   { transform: scale(0.8); opacity: 0; }
 }
 
-.animate-fadeIn {
-  animation: fadeIn 0.3s ease-out;
+/* ─── Flicker ─── */
+@keyframes flicker {
+  0%, 19%, 21%, 23%, 25%, 54%, 56%, 100% { opacity: 1; }
+  20%, 24%, 55% { opacity: 0.6; }
 }
 
-.animate-fadeOut {
-  animation: fadeOut 0.3s ease-out;
+.flicker {
+  animation: flicker 4s infinite;
 }
 
-.animate-scaleIn {
-  animation: scaleIn 0.3s ease-out;
+.animate-fadeIn  { animation: fadeIn  0.3s ease-out; }
+.animate-fadeOut { animation: fadeOut 0.3s ease-out; }
+.animate-scaleIn { animation: scaleIn  0.3s ease-out; }
+.animate-scaleOut{ animation: scaleOut 0.3s ease-out; }
+
+/* ─── Scrollbar ─── */
+::-webkit-scrollbar {
+  width: 6px;
 }
 
-.animate-scaleOut {
-  animation: scaleOut 0.3s ease-out;
+::-webkit-scrollbar-track {
+  background: #0A0010;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #7B00CC;
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #9B30FF;
+  box-shadow: 0 0 8px rgba(155, 48, 255, 0.6);
+}
+
+/* ─── Selection ─── */
+::selection {
+  background: rgba(155, 48, 255, 0.35);
+  color: #F0D0FF;
 }

@@ -23,10 +23,8 @@ const Navigation = () => {
 
   useEffect(() => {
     const handleScroll = () => {
-      // Check if scrolled
       setIsScrolled(window.scrollY > 10);
 
-      // Update active tab
       const sections = tabs.map(tab => tab.id);
       const currentSection = sections.find(section => {
         const element = document.getElementById(section);
@@ -43,7 +41,6 @@ const Navigation = () => {
     };
 
     const handleResize = () => {
-      // Close mobile menu if screen becomes desktop size
       if (window.innerWidth >= 768 && isMobileMenuOpen) {
         setIsMobileMenuOpen(false);
       }
@@ -58,10 +55,8 @@ const Navigation = () => {
   }, [tabs, isMobileMenuOpen]);
 
   const scrollToSection = (sectionId: string) => {
-    // If we're not on the home page, navigate there first
     if (location.pathname !== '/') {
       navigate('/', { replace: true });
-      // Wait for navigation and then scroll
       setTimeout(() => {
         const element = document.getElementById(sectionId);
         if (element) {
@@ -69,13 +64,12 @@ const Navigation = () => {
         }
       }, 100);
     } else {
-      // We're already on the home page, just scroll
       const element = document.getElementById(sectionId);
       if (element) {
         element.scrollIntoView({ behavior: 'smooth' });
       }
     }
-    setIsMobileMenuOpen(false); // Close mobile menu after navigation
+    setIsMobileMenuOpen(false);
   };
 
   const toggleMobileMenu = () => {
@@ -94,30 +88,36 @@ const Navigation = () => {
         width: '100%',
         zIndex: 99999,
         padding: '1rem 0',
-        borderBottom: `1px solid ${isScrolled ? themeColors.navigation.borderScrolled : themeColors.navigation.border}`,
-        boxShadow: `0 ${isScrolled ? '8px 32px' : '4px 24px'} ${isScrolled ? themeColors.navigation.shadowScrolled : themeColors.navigation.shadow}`,
+        borderBottom: `1px solid ${isScrolled ? 'rgba(155, 48, 255, 0.4)' : 'rgba(155, 48, 255, 0.15)'}`,
+        boxShadow: isScrolled
+          ? '0 8px 32px rgba(155, 48, 255, 0.25), 0 0 60px rgba(155, 48, 255, 0.08)'
+          : '0 4px 24px rgba(155, 48, 255, 0.1)',
         backdropFilter: 'saturate(200%) blur(30px)',
         WebkitBackdropFilter: 'saturate(200%) blur(30px)',
         transition: 'all 0.3s ease',
-        background: `linear-gradient(135deg,
-          ${withAlpha(isDarkMode ? themeColors.colors.dark[950] : themeColors.colors.pink[50], isScrolled ? 0.7 : 0.5)},
-          ${withAlpha(isDarkMode ? themeColors.colors.dark[900] : themeColors.colors.pink[25], isScrolled ? 0.7 : 0.5)})`
+        background: isScrolled
+          ? 'linear-gradient(135deg, rgba(5, 0, 10, 0.92), rgba(13, 0, 24, 0.92))'
+          : 'linear-gradient(135deg, rgba(5, 0, 10, 0.6), rgba(13, 0, 24, 0.6))',
       }}>
       <div className="nav-container">
-        <button className="signature-name"
-          style={{ 
-            cursor: 'pointer', 
-            color: themeColors.colors.pink[500], 
-            background: 'none', 
+        <button
+          className="signature-name"
+          style={{
+            cursor: 'pointer',
+            color: '#CC66FF',
+            background: 'none',
             border: 'none',
             outline: 'none',
-            WebkitTextFillColor: themeColors.colors.pink[500]
+            WebkitTextFillColor: '#CC66FF',
+            textShadow: '0 0 12px rgba(204, 102, 255, 0.8), 0 0 30px rgba(155, 48, 255, 0.4)',
+            letterSpacing: '0.05em',
+            fontWeight: '700',
           }}
           onClick={() => window.location.href = '/'}
           aria-label="Your Name - Go to homepage">
           Your Name
         </button>
-        
+
         {/* Desktop Navigation */}
         <div className="nav-tabs desktop-nav">
           {tabs.map((tab) => (
@@ -125,7 +125,16 @@ const Navigation = () => {
               key={tab.id}
               onClick={() => scrollToSection(tab.id)}
               className={`nav-tab ${activeTab === tab.id ? 'active' : ''}`}
-              style={{ color: themeColors.text.accent }}
+              style={{
+                color: activeTab === tab.id ? '#CC66FF' : '#9B30FF',
+                textShadow: activeTab === tab.id
+                  ? '0 0 10px rgba(204, 102, 255, 0.7)'
+                  : 'none',
+                transition: 'all 0.3s ease',
+                borderBottom: activeTab === tab.id
+                  ? '2px solid #CC66FF'
+                  : '2px solid transparent',
+              }}
               aria-label={`Navigate to ${tab.label} section`}
             >
               {tab.label}
@@ -146,14 +155,15 @@ const Navigation = () => {
           aria-label={isMobileMenuOpen ? 'Close menu' : 'Open menu'}
           aria-expanded={isMobileMenuOpen}
           style={{
-            background: isDarkMode ? themeColors.colors.dark[800] : themeColors.colors.white,
-            border: `1px solid ${themeColors.colors.pink[200]}`,
+            background: 'rgba(13, 0, 24, 0.9)',
+            border: '1px solid rgba(155, 48, 255, 0.4)',
             borderRadius: '12px',
             cursor: 'pointer',
             padding: '10px',
             display: 'none',
-            color: themeColors.colors.pink[500],
-            transition: 'all 0.3s ease'
+            color: '#CC66FF',
+            transition: 'all 0.3s ease',
+            boxShadow: '0 0 12px rgba(155, 48, 255, 0.3)',
           }}
         >
           <div style={{ position: 'relative', width: '24px', height: '24px' }}>
@@ -178,7 +188,8 @@ const Navigation = () => {
       </div>
 
       {/* Mobile Navigation Menu */}
-      <div className={`mobile-menu ${isMobileMenuOpen ? 'open' : ''}`}
+      <div
+        className={`mobile-menu ${isMobileMenuOpen ? 'open' : ''}`}
         style={{
           position: 'absolute',
           top: '100%',
@@ -186,14 +197,14 @@ const Navigation = () => {
           right: 0,
           flexDirection: 'column',
           padding: '1rem',
-          background: themeColors.navigation.mobile,
-          borderTop: `1px solid ${themeColors.navigation.border}`,
+          background: 'rgba(5, 0, 10, 0.97)',
+          borderTop: '1px solid rgba(155, 48, 255, 0.2)',
           maxHeight: isMobileMenuOpen ? '400px' : '0',
           overflow: isMobileMenuOpen ? 'visible' : 'hidden',
           transition: 'all 0.4s cubic-bezier(0.4, 0, 0.2, 1)',
           opacity: isMobileMenuOpen ? 1 : 0,
           boxShadow: isMobileMenuOpen
-            ? `0 8px 25px ${themeColors.navigation.shadowScrolled}`
+            ? '0 8px 25px rgba(155, 48, 255, 0.2)'
             : 'none',
           backdropFilter: 'blur(20px)',
           WebkitBackdropFilter: 'blur(20px)',
@@ -206,20 +217,18 @@ const Navigation = () => {
             className={`mobile-nav-tab ${activeTab === tab.id ? 'active' : ''}`}
             style={{
               background: activeTab === tab.id
-                ? withAlpha(
-                    isDarkMode ? themeColors.colors.pink[50] : themeColors.colors.pink[50],
-                    isDarkMode ? 0.05 : 0.8
-                  )
+                ? 'rgba(155, 48, 255, 0.1)'
                 : 'none',
               border: activeTab === tab.id
-                ? `1px solid ${themeColors.colors.pink[200]}`
+                ? '1px solid rgba(155, 48, 255, 0.4)'
                 : '1px solid transparent',
               borderRadius: '12px',
               padding: '0.875rem 1.25rem',
               textAlign: 'left',
-              color: activeTab === tab.id
-                ? themeColors.colors.pink[500]
-                : themeColors.text.accent,
+              color: activeTab === tab.id ? '#CC66FF' : '#9B30FF',
+              textShadow: activeTab === tab.id
+                ? '0 0 8px rgba(204, 102, 255, 0.6)'
+                : 'none',
               fontWeight: activeTab === tab.id ? '600' : '500',
               fontSize: '1rem',
               cursor: 'pointer',
@@ -231,15 +240,12 @@ const Navigation = () => {
               display: 'flex',
               alignItems: 'center',
               outline: 'none',
-              width: '100%'
+              width: '100%',
             }}
             onMouseEnter={(e) => {
               if (activeTab !== tab.id) {
-                e.currentTarget.style.background = withAlpha(
-                  themeColors.colors.pink[50],
-                  isDarkMode ? 0.03 : 0.5
-                );
-                e.currentTarget.style.borderColor = themeColors.colors.pink[200];
+                e.currentTarget.style.background = 'rgba(155, 48, 255, 0.08)';
+                e.currentTarget.style.borderColor = 'rgba(155, 48, 255, 0.3)';
               }
             }}
             onMouseLeave={(e) => {
@@ -257,7 +263,7 @@ const Navigation = () => {
         <div
           className="mt-6 px-4"
           style={{
-            borderTop: `1px solid ${themeColors.colors.pink[200]}`,
+            borderTop: '1px solid rgba(155, 48, 255, 0.2)',
             paddingTop: '1rem',
             opacity: isMobileMenuOpen ? 1 : 0,
             transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
