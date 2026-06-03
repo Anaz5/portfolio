@@ -3,14 +3,12 @@ import { Menu, X } from 'lucide-react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import DarkModeToggle from '../DarkModeToggle';
 import { useDarkMode } from '../../contexts/DarkModeContext';
-import { useThemeColors, withAlpha } from '../../hooks/useThemeColors';
 
 const Navigation = () => {
   const [activeTab, setActiveTab] = useState('about');
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const { isDarkMode, toggleDarkMode } = useDarkMode();
-  const themeColors = useThemeColors();
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -24,7 +22,6 @@ const Navigation = () => {
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 10);
-
       const sections = tabs.map(tab => tab.id);
       const currentSection = sections.find(section => {
         const element = document.getElementById(section);
@@ -34,10 +31,7 @@ const Navigation = () => {
         }
         return false;
       });
-
-      if (currentSection) {
-        setActiveTab(currentSection);
-      }
+      if (currentSection) setActiveTab(currentSection);
     };
 
     const handleResize = () => {
@@ -59,21 +53,13 @@ const Navigation = () => {
       navigate('/', { replace: true });
       setTimeout(() => {
         const element = document.getElementById(sectionId);
-        if (element) {
-          element.scrollIntoView({ behavior: 'smooth' });
-        }
+        if (element) element.scrollIntoView({ behavior: 'smooth' });
       }, 100);
     } else {
       const element = document.getElementById(sectionId);
-      if (element) {
-        element.scrollIntoView({ behavior: 'smooth' });
-      }
+      if (element) element.scrollIntoView({ behavior: 'smooth' });
     }
     setIsMobileMenuOpen(false);
-  };
-
-  const toggleMobileMenu = () => {
-    setIsMobileMenuOpen(!isMobileMenuOpen);
   };
 
   return (
@@ -127,13 +113,9 @@ const Navigation = () => {
               className={`nav-tab ${activeTab === tab.id ? 'active' : ''}`}
               style={{
                 color: activeTab === tab.id ? '#CC66FF' : '#9B30FF',
-                textShadow: activeTab === tab.id
-                  ? '0 0 10px rgba(204, 102, 255, 0.7)'
-                  : 'none',
+                textShadow: activeTab === tab.id ? '0 0 10px rgba(204, 102, 255, 0.7)' : 'none',
                 transition: 'all 0.3s ease',
-                borderBottom: activeTab === tab.id
-                  ? '2px solid #CC66FF'
-                  : '2px solid transparent',
+                borderBottom: activeTab === tab.id ? '2px solid #CC66FF' : '2px solid transparent',
               }}
               aria-label={`Navigate to ${tab.label} section`}
             >
@@ -141,17 +123,14 @@ const Navigation = () => {
             </button>
           ))}
           <div className="ml-4">
-            <DarkModeToggle
-              checked={isDarkMode}
-              onChange={toggleDarkMode}
-            />
+            <DarkModeToggle checked={isDarkMode} onChange={toggleDarkMode} />
           </div>
         </div>
 
         {/* Mobile Menu Button */}
         <button
           className="mobile-menu-btn relative"
-          onClick={toggleMobileMenu}
+          onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
           aria-label={isMobileMenuOpen ? 'Close menu' : 'Open menu'}
           aria-expanded={isMobileMenuOpen}
           style={{
@@ -167,22 +146,8 @@ const Navigation = () => {
           }}
         >
           <div style={{ position: 'relative', width: '24px', height: '24px' }}>
-            <Menu
-              size={24}
-              style={{
-                position: 'absolute',
-                transition: 'opacity 0.3s ease',
-                opacity: isMobileMenuOpen ? 0 : 1
-              }}
-            />
-            <X
-              size={24}
-              style={{
-                position: 'absolute',
-                transition: 'opacity 0.3s ease',
-                opacity: isMobileMenuOpen ? 1 : 0
-              }}
-            />
+            <Menu size={24} style={{ position: 'absolute', transition: 'opacity 0.3s ease', opacity: isMobileMenuOpen ? 0 : 1 }} />
+            <X size={24} style={{ position: 'absolute', transition: 'opacity 0.3s ease', opacity: isMobileMenuOpen ? 1 : 0 }} />
           </div>
         </button>
       </div>
@@ -203,9 +168,7 @@ const Navigation = () => {
           overflow: isMobileMenuOpen ? 'visible' : 'hidden',
           transition: 'all 0.4s cubic-bezier(0.4, 0, 0.2, 1)',
           opacity: isMobileMenuOpen ? 1 : 0,
-          boxShadow: isMobileMenuOpen
-            ? '0 8px 25px rgba(155, 48, 255, 0.2)'
-            : 'none',
+          boxShadow: isMobileMenuOpen ? '0 8px 25px rgba(155, 48, 255, 0.2)' : 'none',
           backdropFilter: 'blur(20px)',
           WebkitBackdropFilter: 'blur(20px)',
         }}
@@ -216,19 +179,13 @@ const Navigation = () => {
             onClick={() => scrollToSection(tab.id)}
             className={`mobile-nav-tab ${activeTab === tab.id ? 'active' : ''}`}
             style={{
-              background: activeTab === tab.id
-                ? 'rgba(155, 48, 255, 0.1)'
-                : 'none',
-              border: activeTab === tab.id
-                ? '1px solid rgba(155, 48, 255, 0.4)'
-                : '1px solid transparent',
+              background: activeTab === tab.id ? 'rgba(155, 48, 255, 0.1)' : 'none',
+              border: activeTab === tab.id ? '1px solid rgba(155, 48, 255, 0.4)' : '1px solid transparent',
               borderRadius: '12px',
               padding: '0.875rem 1.25rem',
               textAlign: 'left',
               color: activeTab === tab.id ? '#CC66FF' : '#9B30FF',
-              textShadow: activeTab === tab.id
-                ? '0 0 8px rgba(204, 102, 255, 0.6)'
-                : 'none',
+              textShadow: activeTab === tab.id ? '0 0 8px rgba(204, 102, 255, 0.6)' : 'none',
               fontWeight: activeTab === tab.id ? '600' : '500',
               fontSize: '1rem',
               cursor: 'pointer',
@@ -260,25 +217,18 @@ const Navigation = () => {
             {tab.label}
           </button>
         ))}
-        <div
-          className="mt-6 px-4"
-          style={{
-            borderTop: '1px solid rgba(155, 48, 255, 0.2)',
-            paddingTop: '1rem',
-            opacity: isMobileMenuOpen ? 1 : 0,
-            transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
-            transitionDelay: isMobileMenuOpen ? '0.4s' : '0s',
-            position: 'relative',
-            zIndex: 10,
-            display: 'flex',
-            justifyContent: 'center',
-            alignItems: 'center',
-          }}
-        >
-          <DarkModeToggle
-            checked={isDarkMode}
-            onChange={toggleDarkMode}
-          />
+        <div style={{
+          borderTop: '1px solid rgba(155, 48, 255, 0.2)',
+          paddingTop: '1rem',
+          marginTop: '1.5rem',
+          opacity: isMobileMenuOpen ? 1 : 0,
+          transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
+          transitionDelay: isMobileMenuOpen ? '0.4s' : '0s',
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center',
+        }}>
+          <DarkModeToggle checked={isDarkMode} onChange={toggleDarkMode} />
         </div>
       </div>
     </nav>
